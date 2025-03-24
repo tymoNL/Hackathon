@@ -1,0 +1,66 @@
+:root {}
+
+body {
+    background-color: #ccc;
+    margin: 0;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    background-color: #333;
+    color: #fff;
+    padding: 0 1em;
+    text-align: center;
+    margin-bottom: 2em;
+
+    @media screen and (min-width: 1440px) {
+        padding: 0;
+    }
+}
+
+main {
+    padding: 0 1em;
+
+    @media screen and (min-width: 1440px) {
+        padding: 0;
+
+    }
+}
+
+.womanContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-gap: 1em;
+
+
+    article {
+        display: grid;
+        padding: 0.75em 0.75em;
+        border-radius: 10px;
+        background-color: #fff;
+
+        img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .info {
+            margin-top: auto;
+        }
+
+        .quote::before,
+        .quote,
+        .quote::after {
+            font-style: italic;
+        }
+
+        .quote::before {
+            content: open-quote;
+        }
+
+        .quote::after {
+            content: close-quote;
+        }
+    }
+}
