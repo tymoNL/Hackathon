@@ -156,6 +156,7 @@ main {
     border-radius: 10px;
     transition: 0.25s all ease-out;
     background-color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 
 
     &.active {
@@ -174,6 +175,7 @@ main {
     right: 0;
     top: 0;
     display: grid;
+    z-index: 10;
 }
 
 .showChozenWoman {

@@ -38,7 +38,7 @@ getData(MyURL).then(dataWomen => {
         const womanCountry = woman.country ?? 'No country given';
         const womanImage = `https://fdnd.directus.app/assets/${woman.image}` ?? 'images/no-image.png';
         const womanWebsite = woman.website ?? 'No website given';
-    
+
         const womanHTML = `
         <li class="woman" 
             data-name="${womanName.replace(/"/g, '&quot;')}"
@@ -59,7 +59,30 @@ getData(MyURL).then(dataWomen => {
             </div>
         </li>
     `;
-    
+
+
+        // CARD CLONE
+        let cardDuplicate = `
+            <button class="card">
+                <!-- front -->
+                <div>
+                    <p>${womanName}</p>
+                </div>
+                <!-- back -->
+                <div></div>
+                <!-- top -->
+                <div></div>
+                <!-- bottom -->
+                <div></div>
+                <!-- left -->
+                <div></div>
+                <!-- right -->
+                <div></div>
+            </button>
+        `;
+
+        document.querySelector('.top')?.insertAdjacentHTML('beforeend', cardDuplicate);
+
         carrousel.insertAdjacentHTML('beforeend', womanHTML);
     });
 
@@ -73,7 +96,7 @@ getData(MyURL).then(dataWomen => {
             const country = clickedWoman.dataset.country;
             const image = clickedWoman.dataset.image;
             const website = clickedWoman.dataset.website;
-    
+
             selectWoman(clickedWoman, name, work, tagline, period, country, image, website);
             carrouselContainer.classList.add('hidden');
             h3.classList.add('hidden');
@@ -96,7 +119,7 @@ function selectWoman(obj, womanName, womanWork, womanTagline, womanPeriod, woman
     console.log(obj);
 
     let chozenWomanHTML =
-    `<div class="chozenWoman">
+        `<div class="chozenWoman">
         <div class="chozenWomanInfo">
             <img src="${womanImage}" loading="lazy" alt="${womanName}" />
             <div class="info">

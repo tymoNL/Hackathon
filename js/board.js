@@ -17,30 +17,6 @@ ranges.forEach(range => {
 });
 
 
-// CARD CLONE
-let cardDuplicate = `
-<button class="card">
-    <!-- front -->
-    <div>
-        <p>Lalaalalalallalal</p>
-    </div>
-    <!-- back -->
-    <div></div>
-    <!-- top -->
-    <div></div>
-    <!-- bottom -->
-    <div></div>
-    <!-- left -->
-    <div></div>
-    <!-- right -->
-    <div></div>
-</button>
-`;
-
-for (let index = 0; index < 25; index++) {
-    document.querySelector('.top')?.insertAdjacentHTML('beforeend', cardDuplicate);
-    console.log('test');
-}
 
 
 // CARD ANIMATION
