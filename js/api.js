@@ -9,35 +9,46 @@ getData(MyURL).then(dataWomen => {
 
     let allWoman = dataWomen.data;
 
-    // Get container in the dom 
-    let everybodySection = document.querySelector(".womanContainer");
-
-    allWoman.forEach(woman => {
-
-        // Person variables
-        womanName = woman.name;
-        womanWork = woman.work;
-        womanTagline = woman.tagline;
-        womanPeriod = woman.period;
-        womanCountry = woman.country;
-        womanImage = 'https://fdnd.directus.app/assets/' + woman.image;
-        womanWebsite = woman.website;
-
-        /*
-        womanInfo = [womanName, womanWork, womanTagline, womanPeriod, womanCountry, womanImage, womanWebsite];
-
-        for (let info = 0; info < womanInfo.length; info++) {
-            const infoElement = womanInfo[info];
-
-            if(infoElement == null) {
-                infoElement = 'Geen waarde gegeven';
-            }
-            
+    // Shuffle the array function
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
         }
-            */
+    }
 
-        let womanHTML =  
-        `<article>
+    // Shuffle the array
+    shuffleArray(allWoman);
+
+    // Select the first 25 random women
+    let randomWomen = allWoman.slice(0, 25);
+    console.log(randomWomen);
+
+    // Get container in the dom 
+    let carrousel = document.querySelector(".carrousel");
+    let carrouselContainer = document.querySelector(".carrouselContainer");
+    let h3 = document.querySelector("h3");
+    let showChozenWomanBtn = document.querySelector("#showChozenWoman");
+
+    randomWomen.forEach(woman => {
+        const womanName = woman.name ?? 'No name given';
+        const womanWork = woman.work ?? 'No workplace given';
+        const womanTagline = woman.tagline ?? 'No tagline given';
+        const womanPeriod = woman.period ?? 'No period given';
+        const womanCountry = woman.country ?? 'No country given';
+        const womanImage = `https://fdnd.directus.app/assets/${woman.image}` ?? 'images/no-image.png';
+        const womanWebsite = woman.website ?? 'No website given';
+    
+        const womanHTML = `
+        <li class="woman" 
+            data-name="${womanName.replace(/"/g, '&quot;')}"
+            data-work="${womanWork.replace(/"/g, '&quot;')}"
+            data-tagline="${womanTagline.replace(/"/g, '&quot;')}"
+            data-period="${womanPeriod.replace(/"/g, '&quot;')}"
+            data-country="${womanCountry.replace(/"/g, '&quot;')}"
+            data-image="${womanImage}"
+            data-website="${womanWebsite.replace(/"/g, '&quot;')}"
+        >
             <img src="${womanImage}" loading="lazy" alt="${womanName}" />
             <div class="info">
                 <h3 class="name">${womanName}</h3>
@@ -45,11 +56,29 @@ getData(MyURL).then(dataWomen => {
                 <p class="work"><i class="fa-solid fa-briefcase"></i> ${womanWork}</p>
                 <p class="country"><i class="fa-solid fa-earth-europe"></i> ${womanCountry}</p>
                 <p class="period">${womanPeriod}</p>
-                <a href="${womanWebsite}" aria-label="de website van ${womanName}">More information <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
             </div>
-        </article>`;
+        </li>
+    `;
+    
+        carrousel.insertAdjacentHTML('beforeend', womanHTML);
+    });
 
-        everybodySection.insertAdjacentHTML('beforeend', womanHTML);
+    carrousel.addEventListener('click', (e) => {
+        const clickedWoman = e.target.closest('.woman');
+        if (clickedWoman) {
+            const name = clickedWoman.dataset.name;
+            const work = clickedWoman.dataset.work;
+            const tagline = clickedWoman.dataset.tagline;
+            const period = clickedWoman.dataset.period;
+            const country = clickedWoman.dataset.country;
+            const image = clickedWoman.dataset.image;
+            const website = clickedWoman.dataset.website;
+    
+            selectWoman(clickedWoman, name, work, tagline, period, country, image, website);
+            carrouselContainer.classList.add('hidden');
+            h3.classList.add('hidden');
+            showChozenWomanBtn.classList.add('show');
+        }
     });
 });
 
@@ -60,4 +89,36 @@ async function getData(URL) {
             .then(response => response.json())
             .then(jsonData => { return jsonData })
     );
+}
+
+function selectWoman(obj, womanName, womanWork, womanTagline, womanPeriod, womanCountry, womanImage, womanWebsite) {
+
+    console.log(obj);
+
+    let chozenWomanHTML =
+    `<div class="chozenWoman">
+        <div class="chozenWomanInfo">
+            <img src="${womanImage}" loading="lazy" alt="${womanName}" />
+            <div class="info">
+                <h3 class="name">${womanName}</h3>
+                <small class="quote">${womanTagline}</small>
+                <p class="work"><i class="fa-solid fa-briefcase"></i> ${womanWork}</p>
+                <p class="country"><i class="fa-solid fa-earth-europe"></i> ${womanCountry}</p>
+                <p class="period">${womanPeriod}</p>
+            </div>
+        </div>
+    `;
+
+    let sidebar = document.querySelector(".sideBar");
+
+    sidebar.insertAdjacentHTML('beforeend', chozenWomanHTML);
+
+    let showChozenWomanBtn = document.querySelector("#showChozenWoman");
+    showChozenWomanBtn.addEventListener('click', () => {
+        let chozenWomanElement = document.querySelector('.chozenWoman');
+        if (chozenWomanElement) {
+            chozenWomanElement.classList.toggle('active');
+            showChozenWomanBtn.classList.toggle('active');
+        }
+    });
 }

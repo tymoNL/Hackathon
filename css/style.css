@@ -1,66 +1,199 @@
-:root {}
+:root {
+    --header-bg: #D9D9D9;
+    --header-color: #444;
+    --carrousel-bg: #6B6262;
+}
 
 body {
-    background-color: #ccc;
     margin: 0;
+    font-family: "Poppins", sans-serif;
+    font-weight: normal; /* Uses the regular font face */
+}
+
+h1 {
+    color: var(--header-color);
 }
 
 header {
     display: flex;
     justify-content: space-between;
-    background-color: #333;
-    color: #fff;
+    align-items: center;
+    background-color: var(--header-bg);
+    color: var(--header-color);
     padding: 0 1em;
     text-align: center;
-    margin-bottom: 2em;
 
-    @media screen and (min-width: 1440px) {
-        padding: 0;
+    img {
+        width: 100%;
+        max-width: 200px;
+        margin: 0.5em 0;
+        border-radius: 10px;
     }
 }
 
 main {
     padding: 0 1em;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    position: relative;
 
-    @media screen and (min-width: 1440px) {
-        padding: 0;
+    >h1,
+    h3 {
+        text-align: center;
+    }
 
+    h3 {
+        color: #fff;
     }
 }
 
-.womanContainer {
+.hidden {
+    display: none;
+}
+
+/* Carrousel Bron: */
+/* https://developer.chrome.com/blog/carousels-with-css?hl=nl */
+
+/* Carrousel */
+
+.carrouselContainer {
+    background-color: var(--carrousel-bg);
+    padding: 3em;
+    border-radius: 10px;
+    position: relative;
+}
+
+
+.carrousel {
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-auto-flow: column;
+    grid-auto-columns: clamp(200px, 30vw, 300px);
     grid-gap: 1em;
+    scroll-behavior: smooth;
+    padding: 0;
+    margin-inline: 0;
 
+    &.hidden {
+        display: none;
+    }
 
-    article {
-        display: grid;
+    /* Carrousel item */
+    >.woman {
+        scroll-snap-align: start;
+        list-style-type: none;
         padding: 0.75em 0.75em;
         border-radius: 10px;
         background-color: #fff;
+        scroll-snap-stop: always;
+    }
 
-        img {
-            width: 100%;
-            border-radius: 10px;
-        }
+    &::scroll-button(left),
+    &::scroll-button(right) {
+        cursor: pointer;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        border: none;
+        color: #fff;
+        background-color: #444;
+        border-radius: 5px;
+        width: 2em;
+        height: 2em;
+        font-size: 1em;
+    }
 
-        .info {
-            margin-top: auto;
-        }
+    &::scroll-button(left) {
+        content: "⬅" / "Scroll Left";
+        left: 0.5em;
+    }
 
-        .quote::before,
-        .quote,
-        .quote::after {
-            font-style: italic;
-        }
+    &::scroll-button(right) {
+        content: "⮕" / "Scroll Right";
+        right: 0.5em;
+    }
 
-        .quote::before {
-            content: open-quote;
-        }
+    &::scroll-button(*):focus-visible {
+        outline-offset: 5px;
+    }
+}
 
-        .quote::after {
-            content: close-quote;
+.woman {
+    cursor: pointer;
+
+    img {
+        width: 100%;
+        border-radius: 10px;
+    }
+
+    .quote::before,
+    .quote,
+    .quote::after {
+        font-style: italic;
+    }
+
+    .quote::before {
+        content: open-quote;
+    }
+
+    .quote::after {
+        content: close-quote;
+    }
+}
+
+.chozenWoman {
+    display: flex;
+    align-items: flex-start;
+    width: 20em;
+    max-width: 0px;
+    overflow: hidden;
+    border-radius: 10px;
+    transition: 0.25s all ease-out;
+    background-color: #fff;
+
+
+    &.active {
+        max-width: 1000px;
+        padding: 1em;
+    }
+
+    img {
+        width: 100%;
+        border-radius: 10px;
+    }
+}
+
+.sideBar {
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: grid;
+}
+
+.showChozenWoman {
+    display: none;
+    background-color: #444;
+    margin-left: auto;
+    color: #fff;
+    width: 2em;
+    height: 2em;
+    font-size: 2em;
+    border: none;
+
+
+    &.show {
+        display: block;
+    }
+
+    &.active {
+        i {
+            transform: rotate(180deg);
         }
+    }
+
+    i {
+        transition: 0.25s all ease-out;
     }
 }
