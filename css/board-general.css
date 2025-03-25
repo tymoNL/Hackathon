@@ -1,0 +1,340 @@
+:root {
+  /* aanpasbaar */
+  --xyz-size: 1.5vw;
+  --x: calc(25 * var(--xyz-size));
+  --y: calc(1 * var(--xyz-size));
+  --z: calc(35 * var(--xyz-size));
+
+  --gap-value-inline: 1vw;
+  --gap-value-block: 2vw;
+  --padding-value: 3vw;
+
+
+  /* berekening */
+  --adjustments-block: calc((var(--gap-value-block) * 4) + (var(--padding-value) * 2));
+  --adjustments-inline: calc((var(--gap-value-inline) * 4) + (var(--padding-value) * 2));
+
+  --camera-rotations: 2turn;
+  --camera-rotation: calc(var(--unitless-camera-rotation) * var(--camera-rotations));
+}
+
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+
+button {
+  border: none;
+  background: none;
+  padding: 0;
+  margin: 0;
+  appearance: none;
+  outline: none;
+  display: block;
+}
+
+
+/* ========================== */
+/* SHADING */
+/* ========================== */
+
+.board>div::before,
+.top>.card>div::before {
+  position: absolute;
+  content: "";
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-color: #000;
+  pointer-events: none;
+}
+
+.top>.card:focus>div::before {
+  background-color: red;
+}
+
+/* -=-=-=-=-=-=- BOARD -=-=-=-=-=-=- */
+
+/* front */
+.board>div:nth-of-type(1)::before {
+  opacity: .15;
+}
+
+/* back */
+.board>div:nth-of-type(2)::before {
+  opacity: .4;
+}
+
+/* top */
+.board>div:nth-of-type(3)::before {
+  opacity: .05;
+}
+
+/* bottom */
+.board>div:nth-of-type(4)::before {
+  opacity: 0.6;
+}
+
+/* left right */
+.board>div:nth-of-type(5)::before,
+.board>div:nth-of-type(6)::before {
+  opacity: .3;
+}
+
+/* -=-=-=-=-=-=- CARDS -=-=-=-=-=-=- */
+
+/* front */
+.top>.card>div:nth-of-type(1)::before {
+  opacity: .15;
+}
+
+/* back */
+.top>.card>div:nth-of-type(2)::before {
+  opacity: .4;
+  transition: all .5s linear;
+}
+
+/* top */
+.top>.card>div:nth-of-type(3)::before {
+  opacity: .05;
+}
+
+/* bottom */
+.top>.card>div:nth-of-type(4)::before {
+  opacity: 0.6;
+}
+
+/* left right */
+.top>.card>div:nth-of-type(5)::before,
+.top>.card>div:nth-of-type(6)::before {
+  opacity: .3;
+}
+
+
+
+/* ========================== */
+/* SET UP */
+/* ========================== */
+
+.scene {
+  height: 30vw;
+
+  display: grid;
+  place-items: center;
+
+  perspective: 70em;
+  perspective-origin: center center;
+  transform-style: preserve-3d;
+  translate: 0 50%;
+
+}
+
+.scene * {
+  transform-style: preserve-3d;
+}
+
+.board {
+  transform: rotateX(-40deg) rotateY(calc(360deg - var(--camera-rotation)));
+}
+
+.board>div {
+  background-color: rgb(142, 149, 232);
+  position: absolute;
+}
+
+
+/* ========================== */
+/* THE BOARD */
+/* ========================== */
+
+/* front */
+.board>div:nth-of-type(1) {
+  width: var(--x);
+  height: var(--y);
+  translate: calc(var(--x) / -2) calc(var(--y) / -2) calc(var(--z) / 2);
+}
+
+/* back */
+.board>div:nth-of-type(2) {
+  width: var(--x);
+  height: var(--y);
+  translate: calc(var(--x) / -2) calc(var(--y) / -2) calc(var(--z) / -2);
+}
+
+/* top */
+.board>div:nth-of-type(3) {
+  width: var(--x);
+  height: var(--z);
+  transform-origin: top;
+  rotate: x 90deg;
+  translate: calc(var(--x) / -2) calc(var(--y) / -2) calc(var(--z) / -2);
+}
+
+/* bottom */
+.board>div:nth-of-type(4) {
+  width: var(--x);
+  height: var(--z);
+  transform-origin: top;
+  rotate: x 90deg;
+  translate: calc(var(--x) / -2) calc(var(--y) / 2) calc(var(--z) / -2);
+}
+
+/* left */
+.board>div:nth-of-type(5) {
+  width: var(--z);
+  height: var(--y);
+  transform-origin: left;
+  rotate: y 90deg;
+  translate: calc(var(--x) / -2) calc(var(--y) / -2) calc(var(--z) / 2);
+}
+
+/* right */
+.board>div:nth-of-type(6) {
+  width: var(--z);
+  height: var(--y);
+  transform-origin: left;
+  rotate: y 90deg;
+  translate: calc(var(--x) / 2) calc(var(--y) / -2) calc(var(--z) / 2);
+}
+
+
+/* ========================== */
+/* THE CARDS */
+/* ========================== */
+
+.top {
+  width: 100%;
+  height: 100%;
+  padding: var(--padding-value);
+
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  gap: var(--gap-value-block) var(--gap-value-inline);
+}
+
+.top>.card {
+  position: static;
+  height: 100%;
+  width: 100%;
+
+  transform-origin: top;
+  transform: rotateX(110deg);
+  transition: all .5s ease;
+}
+
+.top>.card:hover {
+  translate: 0 0 1em;
+}
+
+.top>.card:hover div:nth-of-type(2)::before {
+  /* opacity: 0; */
+}
+
+/* ROTATED */
+.top>.card.rotated {
+  transform: rotateX(0deg);
+}
+
+.top>.card.rotated>div:nth-of-type(2)::before {
+  opacity: .05;
+}
+
+.top>.card div {
+  background-color: #fff;
+  position: absolute;
+}
+
+/* front */
+.top>.card div:nth-of-type(1) {
+  width: 100%;
+  height: 100%;
+  translate: 0 -50% calc(var(--z) / -100);
+  /* klein foutje recht zetten */
+  transform: rotateZ(180deg) rotateY(180deg);
+}
+
+/* back */
+.top>.card div:nth-of-type(2) {
+  width: 100%;
+  height: 100%;
+  translate: 0 -50% calc(var(--z) / 100);
+}
+
+/* top */
+.top>.card div:nth-of-type(3) {
+  width: 100%;
+  height: calc(var(--z) / 50);
+  transform-origin: top;
+  rotate: x 90deg;
+  /* translate: 0 calc((var(--z) - var(--adjustments-block)) / 5) calc(var(--z) / -100); */
+  translate: 0 calc((var(--z) - var(--adjustments-block)) / 10) calc(var(--z) / -100);
+} 
+
+/* bottom */
+/* nothing */
+
+/* left */
+.top>.card div:nth-of-type(5) {
+  width: calc(var(--z) / 50);
+  height: 100%;
+  transform-origin: left;
+  rotate: y 90deg;
+  translate: 0 -50% calc(var(--z) / 100);
+}
+
+/* right */
+.top>.card div:nth-of-type(6) {
+  width: calc(var(--z) / 50);
+  height: 100%;
+  transform-origin: left;
+  rotate: y 90deg;
+  translate: calc((var(--x) - var(--adjustments-inline)) / 5) -50% calc(var(--z) / 100);
+}
+
+
+
+/* ========================== */
+/* CARD CONTENT */
+/* ========================== */
+
+.top>.card div:nth-of-type(1) {
+  background-color: #fff;
+  padding: .5vw;
+  display: flex;
+}
+
+.top>.card div:nth-of-type(1) p {
+  width: 100%;
+  height: max-content;
+  font-size: .5vw;
+  hyphens: auto;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+
+/* ========================== */
+/* HOVER CARD */
+/* ========================== */
+
+article {
+  width: calc((var(--x) - var(--adjustments-inline)) / 5 * 4);
+  height: calc((var(--z) - var(--adjustments-block)) / 5 * 4);
+  background-color: red;
+  position: absolute;
+  top: 50%;
+  translate: 0 -50%;
+  right: 1em;
+}
+
+input {
+  position: absolute;
+  top: 1em;
+  left: 1em;
+}
