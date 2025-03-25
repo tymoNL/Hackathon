@@ -8,6 +8,7 @@ body {
     margin: 0;
     font-family: "Poppins", sans-serif;
     font-weight: normal; /* Uses the regular font face */
+    height: 100vh;
 }
 
 h1 {
@@ -21,6 +22,8 @@ header {
     background-color: var(--header-bg);
     color: var(--header-color);
     padding: 0 1em;
+    background-color: #333;
+    color: #fff;
     text-align: center;
 
     img {
@@ -36,6 +39,7 @@ main {
     margin-top: 2em;
     margin-bottom: 2em;
     position: relative;
+    /* padding: 0 1em; */
 
     >h1,
     h3 {
