@@ -7,7 +7,8 @@
 body {
     margin: 0;
     font-family: "Poppins", sans-serif;
-    font-weight: normal; /* Uses the regular font face */
+    font-weight: normal;
+    /* Uses the regular font face */
     height: 100vh;
 }
 
@@ -156,6 +157,7 @@ main {
     border-radius: 10px;
     transition: 0.25s all ease-out;
     background-color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 
 
     &.active {
@@ -174,6 +176,7 @@ main {
     right: 0;
     top: 0;
     display: grid;
+    z-index: 10;
 }
 
 .showChozenWoman {
@@ -199,5 +202,23 @@ main {
 
     i {
         transition: 0.25s all ease-out;
+    }
+}
+
+article {
+    .card-info {
+        display: grid;
+        grid-template-rows: auto 1fr;
+
+        img {
+            height: 10em;
+            width: 100%;
+            object-fit: cover;
+            border-radius: 0 0 10px 10px;
+        }
+
+.info {
+    padding: 0 1em;
+}
     }
 }
