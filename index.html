@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="en">
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,7 +12,7 @@
     <!-- Font-awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 
-    <!-- CSS -->
+    <!-- ⭐️ CSS ⭐️ -->
     <link rel="stylesheet" href="css/style.css">
 
     <link rel="stylesheet" href="css/fonts.css">
@@ -20,61 +20,80 @@
     <link rel="stylesheet" href="css/board-general.css">
 </head>
 
-<body>
-    <header>
-        <img src="images/logo.png" alt="logo" class="logo" />
 
-        <h2>David, Kim, Tymo</h2>
+
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <a href="#">logo woman tech</a>
+        <h2>Who's she game</h2>
     </header>
 
+    <!-- MAIN -->
     <main>
-        <h1>Who am i?</h1>
-
-
+        <!-- <h1>Guess who game</h1> -->
 
         <div class="sideBar">
             <button class="showChozenWoman" id="showChozenWoman"><i class="fa-solid fa-chevron-left"></i></button>
         </div>
 
-        <section class="carrouselContainer">
-            <h3>Choose your tech woman</h3>
-
-            <ul class="carrousel"></ul>
-            <h2>Wosy</h2>
-        </section>
-
-
-        <section class="scene">
-            <input id="camera" type="range" min="0" max="1" value=".5" step=".001" name="unitless-camera-rotation">
-            <section class="board">
-                <!-- front -->
-                <div></div>
-                <!-- back -->
-                <div></div>
-                <!-- top -->
-                <div>
-                    <div class="top">
-
-                    </div>
-                </div>
-                <!-- bottom -->
-                <div></div>
-                <!-- left -->
-                <div></div>
-                <!-- right -->
-                <div></div>
-
+        <div class="start-wrapper wrapper">
+            <section class="start-screen">
+                <img src="https://women-in-tech.org/wp-content/uploads/2023/12/womenintech-logo-2024.png"
+                    alt="logo women in tech">
+                <h2>Guess Who Game</h2>
+                <button>Start</button>
             </section>
-            <article></article>
-        </section>
+        </div>
+
+        <div class="carousel-wrapper wrapper hidden">
+            <section class="carrouselContainer">
+                <p>Guess who game</p>
+                <h3>Choose your tech woman</h3>
+                <ul class="carrousel"></ul>
+            </section>
+        </div>
+
+
+
+        <!-- scene -->
+        <!-- code staat in notion -->
+        <div class="scene-wrapper wrapper hidden">
+            <section class="scene">
+                <input id="camera" type="range" min="0" max="1" value=".5" step=".001" name="unitless-camera-rotation">
+                <section class="board">
+                    <!-- front -->
+                    <div></div>
+                    <!-- back -->
+                    <div></div>
+                    <!-- top -->
+                    <div>
+                        <div class="top">
+
+                        </div>
+                    </div>
+                    <!-- bottom -->
+                    <div></div>
+                    <!-- left -->
+                    <div></div>
+                    <!-- right -->
+                    <div></div>
+
+                </section>
+
+                <article></article>
+            </section>
+        </div>
     </main>
 
-    <footer></footer>
 
-    <!-- JS -->    
-     <script src="js/api.js"></script>
+    <!-- 👾 JS 👾 -->
+    <script src="js/script.js"></script>
+
+    <script src="js/api.js"></script>
+
     <script src="js/board.js"></script>
-
 </body>
 
 </html>
