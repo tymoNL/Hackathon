@@ -33,6 +33,11 @@ function setupCardListeners() {
         const womanPeriod = card.dataset.period;
         const womanCountry = card.dataset.country;
         const womanWebsite = card.dataset.website;
+        const womanGithub = card.dataset.github;
+        const womanCodepen = card.dataset.codepen;
+        const womanCodepenDemo = card.dataset.codepenDemo;
+
+        console.log("kaas");
 
         const articleHTML = `
             <div class="card-info">
@@ -43,6 +48,12 @@ function setupCardListeners() {
                     <p class="work"><i class="fa-solid fa-briefcase"></i> ${womanWork}</p>
                     <p class="country"><i class="fa-solid fa-earth-europe"></i> ${womanCountry}</p>
                     <p class="period">${womanPeriod}</p>
+                    <ul>
+                        <li><a href="${womanWebsite}" target="_blank">Website</a></li>
+                        <li><a href="${womanGithub}" target="_blank">Github</a></li>
+                        <li><a href="${womanCodepen}" target="_blank">Codepen</a></li>
+                        <li><a href="${womanCodepenDemo}" target="_blank">Codepen demo</a></li>
+                    </ul>
                 </div>
             </div>
         `;
@@ -53,12 +64,17 @@ function setupCardListeners() {
         });
 
         card.addEventListener('mouseover', () => {
+console.log('Mouse over');
+
             const infoDiv = article.querySelector('.card-info');
-            const extraInfoDiv = extraInfoContainer.querySelector('.extraInfo');
             if (infoDiv) {
                 infoDiv.remove();
-                extraInfoDiv.remove();
                 console.log('Mouse left, info removed');
+            }
+
+            if (!article.querySelector('.card-info')) {
+                article.insertAdjacentHTML('beforeend', articleHTML);
+                console.log('Hovered, info added');
             }
         });
     });
