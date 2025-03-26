@@ -327,3 +327,43 @@ main {
         transition: 0.25s all ease-out;
     }
 }
+
+article {
+    anchor-name: --anchor-article;
+
+    .card-info {
+        display: grid;
+        grid-template-rows: auto 1fr;
+
+        img {
+            height: 10em;
+            width: 100%;
+            object-fit: cover;
+            border-radius: 0 0 10px 10px;
+        }
+
+        .info {
+            padding: 0 1em;
+
+            button {
+                background-color: #444;
+                color: #fff;
+                border: none;
+                padding: 0.5em 1em;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+.extraInfoContainer {
+        position: fixed;
+        position-anchor: --anchor-article;
+        top: anchor(bottom);
+        z-index: 10;
+        background-color: red;
+        padding: 0.5em 1em;
+        border-radius: 10px;
+        color: #fff;
+}
