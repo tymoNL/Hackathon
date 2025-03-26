@@ -23,6 +23,10 @@ body {
     font-family: var(--font-family);
     font-weight: --font-weight;
     height: 100vh;
+    padding: 2em;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
 
     /* linear gradient 💙*/
     background: var(--background-gradient);
@@ -40,16 +44,12 @@ header {
     background-color: var(--header-bg);
     color: var(--header-color);
     padding: 0 3em;
-    margin: .5em;
     background-color: var(--header-bg);
     color: #fff;
     text-align: center;
     border-radius: 23px;
-    height: 105px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
+    height: 100px;
+    width: 100%;
 
     a {
         width: 100%;
@@ -71,34 +71,23 @@ header {
 main {
     position: relative;
     border-radius: 20px;
-    height: 100vh;
+    height: 100%;
+    width: 100%;
 
     background:
         linear-gradient(var(--aqua-light), var(--aqua-light)) padding-box,
         linear-gradient(to right, #020BA6, #FFFFFF 29%, #05F2F2) border-box;
     border: .5em solid transparent;
-    display: grid;
-    place-items: center;
-
-    /* >h1,
-    h3 {
-        text-align: center;
-        text-transform: uppercase;
-    } */
-
-    h3 {
-        color: #fff;
-    }
 }
 
 .hidden {
-    display: none;
+    display: none !important;
 }
 
 
 /* Start screen */
 
-.start-screen{
+.start-screen { 
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -106,30 +95,34 @@ main {
 
     background: var(--element-gradient);
     border-radius: 15px;
-    max-width: 800px;
     gap: 25px;
 
-    img{
-        max-width: 650px;
-        width: 100%;
+    width: 66.6%;
+    padding: 2em;
+
+    img {
+        width: 66.6%;
         margin: 2px;
     }
 
-    h2, button{
+    h2,
+    button {
         color: white;
         text-transform: uppercase;
     }
 
-    h2{
+    h2 {
         font-weight: 100;
     }
 
-    button{
+    button {
         background: var(--button-gradient);
         padding: 25px 145px;
         border-radius: 15px;
         font-size: 20px;
         margin-bottom: 20px;
+        border: none;
+        cursor: pointer;
     }
 }
 
@@ -139,7 +132,13 @@ main {
 
 
 
-
+.wrapper {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 5em;
+}
 
 
 
@@ -147,69 +146,108 @@ main {
 /* https://developer.chrome.com/blog/carousels-with-css?hl=nl */
 
 /* Carrousel */
-
-.carrouselContainer{
-    background-color: var(--carrousel-bg);
-    padding: 3em;
-    border-radius: 10px;
-    position: relative;
+.carrouselContainer {
+    padding: 2em 5em 3em 5em;
+    margin: 0 3em;
+    background: var(--element-gradient);
+    border-radius: 25px;
+    width: 100%;
 }
 
+.carrouselContainer>p {
+    color:rgba(6, 242, 242, 0.87);
+    text-transform: uppercase;
+    text-align: center;
+}
 
-.carrousel {
+.carrouselContainer>h3 {
+    color: white;
+    text-align: center;
+    font-size: 2em;
+    font-weight: 400;
+    padding-bottom: 1rem;
+}
+
+.carrouselContainer ul {
+    display: flex;
+    height: 100%;
+    list-style-type: none;
+    gap: 1em;
     overflow-x: auto;
+
     overscroll-behavior-x: contain;
     scroll-snap-type: x mandatory;
-    display: grid;
-    grid-auto-flow: column;
-    grid-auto-columns: clamp(200px, 30vw, 300px);
-    grid-gap: 1em;
     scroll-behavior: smooth;
-    padding: 0;
-    margin-inline: 0;
+    anchor-name: --carousel;
 
-    &.hidden {
-        display: none;
+    >li {
+        scroll-snap-align: center;
+    }
+}
+
+.carrouselContainer ul {
+    &::scroll-button(*) {
+        position: fixed;
+        position-anchor: --carousel;
+        font-family: "Material Symbols Outlined";
     }
 
-    /* Carrousel item */
-    >.woman {
-        scroll-snap-align: start;
-        list-style-type: none;
-        padding: 0.75em 0.75em;
-        border-radius: 10px;
-        background-color: #fff;
-        scroll-snap-stop: always;
+    &::scroll-button(*):active {
+        translate: 0 1px;
     }
 
-    &::scroll-button(left),
     &::scroll-button(right) {
-        cursor: pointer;
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
+        position-area: inline-end center;
+        content: '';
+        background-image: url(../images/right-arrow.png);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 20px;
+        height: 40px;
+        width: 40px;
         border: none;
-        color: #fff;
-        background-color: #444;
-        border-radius: 5px;
-        width: 2em;
-        height: 2em;
-        font-size: 1em;
+        border-radius: 50%;
+        margin-left: 1em;
+        background-color: var(--header-bg);
     }
 
     &::scroll-button(left) {
-        content: "⬅" / "Scroll Left";
-        left: 0.5em;
-    }
+        position-area: inline-start center;
+        content: '';
+        background-image: url(../images/right-arrow.png);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 20px;
+        height: 40px;
+        width: 40px;
+        border: none;
+        border-radius: 50%;
+        margin-right: 1em;
+        background-color: var(--header-bg);
 
-    &::scroll-button(right) {
-        content: "⮕" / "Scroll Right";
-        right: 0.5em;
+        rotate: y 180deg;
     }
+}
 
-    &::scroll-button(*):focus-visible {
-        outline-offset: 5px;
-    }
+.carrouselContainer li {
+    padding: 1em;
+    background-color: white;
+    width: calc(33.3% - .66em);
+    height: calc((var(--z) - var(--adjustments-block)) / 5 * 4);
+    flex-shrink: 0;
+    border-radius: 10px;
+    border: 2px solid var(--header-bg);
+}
+
+.carrouselContainer li * {
+    flex-shrink: 0;
+}
+
+.carrouselContainer li img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px 10px 0 0;
 }
 
 .woman {
@@ -289,30 +327,3 @@ main {
         transition: 0.25s all ease-out;
     }
 }
-
-
-/* FOOTER */
-footer{
-    z-index: 10;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: center;
-}
-footer ul{
-    display: flex;
-    gap: 25px;
-    list-style :none;
-    margin: 5px;
-
-    & li{
-        background-color: var(--header-bg) ;
-        border-radius: 15px;
-        padding: 5px 25px;
-        color: white;
-
-    }
-}
-
