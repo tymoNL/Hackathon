@@ -7,7 +7,8 @@
 body {
     margin: 0;
     font-family: "Poppins", sans-serif;
-    font-weight: normal; /* Uses the regular font face */
+    font-weight: normal;
+    /* Uses the regular font face */
     height: 100vh;
 }
 
@@ -201,5 +202,23 @@ main {
 
     i {
         transition: 0.25s all ease-out;
+    }
+}
+
+article {
+    .card-info {
+        display: grid;
+        grid-template-rows: auto 1fr;
+
+        img {
+            height: 10em;
+            width: 100%;
+            object-fit: cover;
+            border-radius: 0 0 10px 10px;
+        }
+
+.info {
+    padding: 0 1em;
+}
     }
 }

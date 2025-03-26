@@ -63,9 +63,18 @@ getData(MyURL).then(dataWomen => {
 
         // CARD CLONE
         let cardDuplicate = `
-            <button class="card">
+            <button class="card"
+            data-name="${womanName.replace(/"/g, '&quot;')}"
+            data-work="${womanWork.replace(/"/g, '&quot;')}"
+            data-tagline="${womanTagline.replace(/"/g, '&quot;')}"
+            data-period="${womanPeriod.replace(/"/g, '&quot;')}"
+            data-country="${womanCountry.replace(/"/g, '&quot;')}"
+            data-image="${womanImage}"
+            data-website="${womanWebsite.replace(/"/g, '&quot;')}"
+            >
                 <!-- front -->
                 <div>
+                <img src="${womanImage}" />
                     <p>${womanName}</p>
                 </div>
                 <!-- back -->
@@ -85,6 +94,8 @@ getData(MyURL).then(dataWomen => {
 
         carrousel.insertAdjacentHTML('beforeend', womanHTML);
     });
+
+    setupCardListeners();
 
     carrousel.addEventListener('click', (e) => {
         const clickedWoman = e.target.closest('.woman');
