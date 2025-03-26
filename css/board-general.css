@@ -27,7 +27,7 @@
 }
 
 
-button {
+.scene button {
   border: none;
   background: none;
   padding: 0;
@@ -131,8 +131,6 @@ button {
   perspective: 70em;
   perspective-origin: center center;
   transform-style: preserve-3d;
-  translate: 0 50%;
-
 }
 
 .scene * {
