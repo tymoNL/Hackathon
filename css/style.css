@@ -1,14 +1,31 @@
+/* 💙💙💙💙💙💙💙💙💙💙💙 */
+/* Custom properties  */
+/* 💙💙💙💙💙💙💙💙💙💙💙 */
+
 :root {
-    --header-bg: #D9D9D9;
+    --header-bg: #020BA6;
+    --aqua: #06F2F2;
+    --aqua-light: #D2EBEB;
     --header-color: #444;
     --carrousel-bg: #6B6262;
+
+    --font-family: "Poppins", sans-serif;
+    --font-weight: normal;
+
+    /* gradients */
+    --background-gradient: linear-gradient(124deg, #020BA6 13.73%, rgba(210, 235, 235, 0.87) 49.16%, rgba(24, 70, 135, 0.87) 102.83%);
+    --button-gradient: linear-gradient(86deg, #020BA6 -87.27%, rgba(6, 242, 242, 0.87) 47.25%, #020BA6 187.27%);
+    --element-gradient: radial-gradient(85.61% 85.61% at 50% 50%, #020BA6 0%, #06F2F2 100%);
 }
 
 body {
-    margin: 0;
-    font-family: "Poppins", sans-serif;
-    font-weight: normal; /* Uses the regular font face */
+    /* Uses the regular font face */
+    font-family: var(--font-family);
+    font-weight: --font-weight;
     height: 100vh;
+
+    /* linear gradient 💙*/
+    background: var(--background-gradient);
 }
 
 h1 {
@@ -16,35 +33,58 @@ h1 {
 }
 
 header {
+    z-index: 10;
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: var(--header-bg);
     color: var(--header-color);
-    padding: 0 1em;
-    background-color: #333;
+    padding: 0 3em;
+    margin: .5em;
+    background-color: var(--header-bg);
     color: #fff;
     text-align: center;
+    border-radius: 23px;
+    height: 105px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
 
-    img {
+    a {
         width: 100%;
         max-width: 200px;
+        height: 60px;
+        background-image: url("https://women-in-tech.org/wp-content/uploads/2023/12/womenintech-logo-2024.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+        text-decoration: none;
+        color: transparent;
         margin: 0.5em 0;
-        border-radius: 10px;
+    }
+
+    h2 {
+        text-transform: uppercase;
     }
 }
 
 main {
-    padding: 0 1em;
-    margin-top: 2em;
-    margin-bottom: 2em;
     position: relative;
-    /* padding: 0 1em; */
+    border-radius: 20px;
+    height: 100vh;
 
-    >h1,
+    background:
+        linear-gradient(var(--aqua-light), var(--aqua-light)) padding-box,
+        linear-gradient(to right, #020BA6, #FFFFFF 29%, #05F2F2) border-box;
+    border: .5em solid transparent;
+    display: grid;
+    place-items: center;
+
+    /* >h1,
     h3 {
         text-align: center;
-    }
+        text-transform: uppercase;
+    } */
 
     h3 {
         color: #fff;
@@ -55,12 +95,60 @@ main {
     display: none;
 }
 
+
+/* Start screen */
+
+.start-screen{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background: var(--element-gradient);
+    border-radius: 15px;
+    max-width: 800px;
+    gap: 25px;
+
+    img{
+        max-width: 650px;
+        width: 100%;
+        margin: 2px;
+    }
+
+    h2, button{
+        color: white;
+        text-transform: uppercase;
+    }
+
+    h2{
+        font-weight: 100;
+    }
+
+    button{
+        background: var(--button-gradient);
+        padding: 25px 145px;
+        border-radius: 15px;
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
 /* Carrousel Bron: */
 /* https://developer.chrome.com/blog/carousels-with-css?hl=nl */
 
 /* Carrousel */
 
-.carrouselContainer {
+.carrouselContainer{
     background-color: var(--carrousel-bg);
     padding: 3em;
     border-radius: 10px;
@@ -201,3 +289,30 @@ main {
         transition: 0.25s all ease-out;
     }
 }
+
+
+/* FOOTER */
+footer{
+    z-index: 10;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+}
+footer ul{
+    display: flex;
+    gap: 25px;
+    list-style :none;
+    margin: 5px;
+
+    & li{
+        background-color: var(--header-bg) ;
+        border-radius: 15px;
+        padding: 5px 25px;
+        color: white;
+
+    }
+}
+

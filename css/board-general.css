@@ -123,6 +123,7 @@ button {
 
 .scene {
   height: 30vw;
+  width: 100%;
 
   display: grid;
   place-items: center;
