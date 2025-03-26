@@ -1,6 +1,21 @@
 const baseURL = 'https://fdnd.directus.app/';
 const endpoint = 'items/women_in_tech';
 
+let startScreen = document.querySelector('.start-screen');
+let startWrapper = document.querySelector('.start-wrapper');
+
+let startScreenButton = document.querySelector('.start-screen button');
+let carouselWrapper = document.querySelector('.carousel-wrapper');
+let carrouselContainer = document.querySelector(".carrouselContainer");
+
+startScreenButton.addEventListener('click', () => {
+    startWrapper.classList.add('hidden')
+    carouselWrapper.classList.remove('hidden');
+});
+
+
+
+
 // De basis url + de specefieke persoon
 const MyURL = baseURL + endpoint;
 
@@ -26,9 +41,9 @@ getData(MyURL).then(dataWomen => {
 
     // Get container in the dom 
     let carrousel = document.querySelector(".carrousel");
-    let carrouselContainer = document.querySelector(".carrouselContainer");
     let h3 = document.querySelector("h3");
     let showChozenWomanBtn = document.querySelector("#showChozenWoman");
+    let sceneWrapper = document.querySelector('.scene-wrapper');
 
     randomWomen.forEach(woman => {
         const womanName = woman.name ?? 'No name given';
@@ -64,9 +79,8 @@ getData(MyURL).then(dataWomen => {
                 <p class="country"><i class="fa-solid fa-earth-europe"></i> ${womanCountry}</p>
                 <p class="period">${womanPeriod}</p>
             </div>
-        </li>
+        </li>   
     `;
-
 
         // CARD CLONE
         let cardDuplicate = `
@@ -102,10 +116,9 @@ getData(MyURL).then(dataWomen => {
 
         document.querySelector('.top')?.insertAdjacentHTML('beforeend', cardDuplicate);
 
+
         carrousel.insertAdjacentHTML('beforeend', womanHTML);
     });
-
-    setupCardListeners();
 
     carrousel.addEventListener('click', (e) => {
         const clickedWoman = e.target.closest('.woman');
@@ -124,8 +137,10 @@ getData(MyURL).then(dataWomen => {
 
             selectWoman(clickedWoman, name, work, tagline, period, country, image, website);
             carrouselContainer.classList.add('hidden');
+            carouselWrapper.classList.add('hidden');
             h3.classList.add('hidden');
             showChozenWomanBtn.classList.add('show');
+            sceneWrapper.classList.remove('hidden');
         }
     });
 });
