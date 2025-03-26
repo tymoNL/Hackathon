@@ -131,8 +131,6 @@ button {
   perspective: 70em;
   perspective-origin: center center;
   transform-style: preserve-3d;
-  translate: 0 50%;
-
 }
 
 .scene * {
@@ -275,7 +273,7 @@ button {
   rotate: x 90deg;
   /* translate: 0 calc((var(--z) - var(--adjustments-block)) / 5) calc(var(--z) / -100); */
   translate: 0 calc((var(--z) - var(--adjustments-block)) / 10) calc(var(--z) / -100);
-} 
+}
 
 /* bottom */
 /* nothing */
@@ -333,12 +331,27 @@ button {
 
 article {
   width: calc((var(--x) - var(--adjustments-inline)) / 5 * 4);
-  height: calc((var(--z) - var(--adjustments-block)) / 5 * 4);
+  /* height: calc((var(--z) - var(--adjustments-block)) / 5 * 4); */
   background-color: red;
   position: absolute;
   top: 50%;
   translate: 0 -50%;
-  right: 1em;
+  right: -5em;
+  padding: 1em;
+  border-radius: 10px;
+
+  img {
+    border-radius: 10px;
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+
+    li {
+      list-style-type: none;
+    }
+  }
 }
 
 input {

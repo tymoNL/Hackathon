@@ -53,6 +53,10 @@ getData(MyURL).then(dataWomen => {
         const womanCountry = woman.country ?? 'No country given';
         const womanImage = `https://fdnd.directus.app/assets/${woman.image}` ?? 'images/no-image.png';
         const womanWebsite = woman.website ?? 'No website given';
+        const womanGithub = woman.github ?? 'No github given';
+        const womanCodepen = woman.codepen ?? 'No codepen given';
+        const womanCodepenDemo = woman.codepen_demo ?? 'No codepen demo given';
+
 
         const womanHTML = `
         <li class="woman" 
@@ -63,6 +67,9 @@ getData(MyURL).then(dataWomen => {
             data-country="${womanCountry.replace(/"/g, '&quot;')}"
             data-image="${womanImage}"
             data-website="${womanWebsite.replace(/"/g, '&quot;')}"
+            data-github="${womanGithub.replace(/"/g, '&quot;')}"
+            data-codepen="${womanCodepen.replace(/"/g, '&quot;')}"
+            data-codepen-demo="${womanCodepenDemo.replace(/"/g, '&quot;')}"
         >
             <img src="${womanImage}" loading="lazy" alt="${womanName}" />
             <div class="info">
@@ -75,8 +82,45 @@ getData(MyURL).then(dataWomen => {
         </li>   
     `;
 
+        // CARD CLONE
+        let cardDuplicate = `
+            <button class="card"
+            data-name="${womanName.replace(/"/g, '&quot;')}"
+            data-work="${womanWork.replace(/"/g, '&quot;')}"
+            data-tagline="${womanTagline.replace(/"/g, '&quot;')}"
+            data-period="${womanPeriod.replace(/"/g, '&quot;')}"
+            data-country="${womanCountry.replace(/"/g, '&quot;')}"
+            data-image="${womanImage}"
+            data-website="${womanWebsite.replace(/"/g, '&quot;')}"
+            data-github="${womanGithub.replace(/"/g, '&quot;')}"
+            data-codepen="${womanCodepen.replace(/"/g, '&quot;')}"
+            data-codepen-demo="${womanCodepenDemo.replace(/"/g, '&quot;')}"
+            >
+                <!-- front -->
+                <div>
+                <img src="${womanImage}" />
+                    <p>${womanName}</p>
+                </div>
+                <!-- back -->
+                <div></div>
+                <!-- top -->
+                <div></div>
+                <!-- bottom -->
+                <div></div>
+                <!-- left -->
+                <div></div>
+                <!-- right -->
+                <div></div>
+            </button>
+        `;
+
+        document.querySelector('.top')?.insertAdjacentHTML('beforeend', cardDuplicate);
+
+
         carrousel.insertAdjacentHTML('beforeend', womanHTML);
     });
+
+    setupCardListeners();
 
     carrousel.addEventListener('click', (e) => {
         const clickedWoman = e.target.closest('.woman');
@@ -88,6 +132,10 @@ getData(MyURL).then(dataWomen => {
             const country = clickedWoman.dataset.country;
             const image = clickedWoman.dataset.image;
             const website = clickedWoman.dataset.website;
+            const Github = clickedWoman.dataset.github;
+            const Codepen = clickedWoman.dataset.codepen;
+            const CodepenDemo = clickedWoman.dataset.codepenDemo;
+
 
             selectWoman(clickedWoman, name, work, tagline, period, country, image, website);
             carrouselContainer.classList.add('hidden');
