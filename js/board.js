@@ -23,6 +23,7 @@ function setupCardListeners() {
     let topContainer = document.querySelector('.top');
     let cards = topContainer.querySelectorAll('.card'); 
     let article = document.querySelector('article');
+    let extraInfoContainer = document.querySelector('.extraInfoContainer'); 
 
     cards.forEach(card => {
         const womanImage = card.dataset.image; 
@@ -32,6 +33,9 @@ function setupCardListeners() {
         const womanPeriod = card.dataset.period;
         const womanCountry = card.dataset.country;
         const womanWebsite = card.dataset.website;
+        const womanGithub = card.dataset.github;
+        const womanCodepen = card.dataset.codepen;
+        const womanCodepenDemo = card.dataset.codepenDemo;
 
         const articleHTML = `
             <div class="card-info">
@@ -42,9 +46,23 @@ function setupCardListeners() {
                     <p class="work"><i class="fa-solid fa-briefcase"></i> ${womanWork}</p>
                     <p class="country"><i class="fa-solid fa-earth-europe"></i> ${womanCountry}</p>
                     <p class="period">${womanPeriod}</p>
+                    <button>More info</button>
                 </div>
             </div>
         `;
+
+            var extraInfo = `
+                <div class="extraInfo">
+                    <p>Extra info</p>
+                    <ul>
+                    <li><a href="${womanWebsite}" target="_blank">Website</a></li>
+                    <li><a href="${womanGithub}" target="_blank">Github</a></li>
+                    <li><a href="${womanCodepen}" target="_blank">Codepen</a></li>
+                    <li><a href="${womanCodepenDemo}" target="_blank">Codepen demo</a></li>
+                    </ul>
+                </div>
+            `;
+        
 
         card.addEventListener('click', () => {
             card.classList.toggle('rotated');
@@ -52,20 +70,23 @@ function setupCardListeners() {
         });
 
         card.addEventListener('mouseover', () => {
+            const infoDiv = article.querySelector('.card-info');
+            const extraInfoDiv = extraInfoContainer.querySelector('.extraInfo');
+            if (infoDiv) {
+                infoDiv.remove();
+                extraInfoDiv.remove();
+                console.log('Mouse left, info removed');
+            }
+
             if (!article.querySelector('.card-info')) {
                 article.insertAdjacentHTML('beforeend', articleHTML);
+                extraInfoContainer.insertAdjacentHTML('beforeend', extraInfo);
                 console.log('Hovered, info added');
             }
         });
-
-        card.addEventListener('mouseleave', () => {
-            const infoDiv = article.querySelector('.card-info');
-            if (infoDiv) {
-                infoDiv.remove();
-                console.log('Mouse left, info removed');
-            }
-        });
     });
+
+
 }
 
 
