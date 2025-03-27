@@ -42,7 +42,7 @@ function setupCardListeners() {
                 <img src="${womanImage}" loading="lazy" alt="${womanName}" />
                 <div class="info">
                     <h3 class="name">${womanName}</h3>
-                    <small class="quote">${womanTagline}</small>
+                    <p class="quote">${womanTagline}</p>
                     <p class="work"><i class="fa-solid fa-briefcase"></i> ${womanWork}</p>
                     <p class="country"><i class="fa-solid fa-earth-europe"></i> ${womanCountry}</p>
                     <p class="period">${womanPeriod}</p>
@@ -94,6 +94,20 @@ function setupCardListeners() {
         });
 
         card.addEventListener('mouseover', () => {
+            console.log('Mouse over');
+
+            const infoDiv = article.querySelector('.card-info');
+            if (infoDiv) {
+                infoDiv.remove();
+                console.log('Mouse left, info removed');
+            }
+
+            if (!article.querySelector('.card-info')) {
+                article.insertAdjacentHTML('beforeend', articleHTML);
+                console.log('Hovered, info added');
+            }
+        });
+        card.addEventListener('focus', () => {
             console.log('Mouse over');
 
             const infoDiv = article.querySelector('.card-info');

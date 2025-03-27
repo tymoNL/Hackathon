@@ -1,13 +1,13 @@
 :root {
   /* aanpasbaar */
-  --xyz-size: 1.25vw;
+  --xyz-size: 1.65cqw;
   --x: calc(25 * var(--xyz-size));
   --y: calc(1 * var(--xyz-size));
   --z: calc(35 * var(--xyz-size));
 
-  --gap-value-inline: 1vw;
-  --gap-value-block: 2vw;
-  --padding-value: 3vw;
+  --gap-value-inline: 1cqw;
+  --gap-value-block: 2cqw;
+  --padding-value: 3cqw;
 
 
   /* berekening */
@@ -122,8 +122,10 @@ button:not(.restart, .showChozenWoman) {
 /* ========================== */
 
 .scene {
+  max-width: 800px;
   width: 100%;
-  /* height: 100%; */
+  height: 100%;
+  container-type: inline-size;
 
   display: grid;
   place-items: center;
@@ -142,7 +144,7 @@ button:not(.restart, .showChozenWoman) {
 }
 
 .board>div {
-  background: radial-gradient(85.61% 85.61% at 50% 50%, rgba(2, 11, 166, 0.72) 0%, rgba(6, 242, 242, 0.72) 100%);
+  background: radial-gradient(85.61% 85.61% at 50% 50%, rgba(2, 11, 166) 0%, rgba(6, 242, 242) 100%);
   position: absolute;
 }
 
@@ -276,10 +278,10 @@ button:not(.restart, .showChozenWoman) {
   background-image: url("https://women-in-tech.org/wp-content/uploads/2023/12/womenintech-logo-2024.png");
   background-size: contain;
   background-repeat: no-repeat;
-  background-size: 100px;
+  background-size: 5cqw;
   background-position: center;
   box-shadow: inset 4px 20px 33px 0px rgba(0, 0, 0, 0.75),
-   2px -10px 16px -6px rgba(0,0,0,0.75);
+    2px -10px 16px -6px rgba(0, 0, 0, 0.75);
 
 }
 
@@ -348,12 +350,13 @@ button:not(.restart, .showChozenWoman) {
 /* ========================== */
 
 article {
-  background-color: #1EF2F2;
-  width: 20vw;
+  z-index: 100;
+  background-color: #fff;
+  width: 25vw;
   position: absolute;
   top: 50%;
+  left: 2vw;
   translate: 0 -50%;
-  left: -5em;
   border-radius: 10px;
 
   ul {
@@ -373,21 +376,36 @@ article {
   padding: 1em;
 
   img {
-    height: 15vw;
     width: 100%;
     object-fit: cover;
     border-radius: 10px;
   }
+
+  h3 {
+    font-size: clamp(1em, 2vw, 1.5em);
+  }
+
+  .quote {
+    font-size: clamp(.45em, 1vw, .75em);
+  }
+
+  p {
+    font-size: clamp(.65em, 1.2vw, 1em);
+  }
+
+  a {
+    font-size: clamp(.65em, 1.2vw, 1em);
+  }
 }
 
 
-
-
-input {
+.controls {
   position: absolute;
   bottom: 1em;
   left: 50%;
   translate: -50% 0;
+  display: flex;
+  justify-content: center;
+  gap: 3em;
+  align-items: center;
 }
-
-

@@ -172,7 +172,7 @@ function selectWoman(obj, womanName, womanWork, womanTagline, womanPeriod, woman
             <img src="${womanImage}" loading="lazy" alt="${womanName}" />
             <div class="info">
                 <h3 class="name">${womanName}</h3>
-                <small class="quote">${womanTagline}</small>
+                <p class="quote">${womanTagline}</p>
                 <p class="work"><i class="fa-solid fa-briefcase"></i> ${womanWork}</p>
                 <p class="country"><i class="fa-solid fa-earth-europe"></i> ${womanCountry}</p>
                 <p class="period">${womanPeriod}</p>

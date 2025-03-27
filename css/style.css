@@ -307,7 +307,7 @@ button.restart {
 
     &.active {
         display: block;
-        max-width: 20vw;
+        max-width: 25vw;
         display: flex;
         align-items: flex-start;
         overflow: hidden;
@@ -317,17 +317,29 @@ button.restart {
     }
 
     img {
-        height: 15vw;
         width: 100%;
         object-fit: cover;
         border-radius: 10px;
+    }
+
+    h3 {
+        font-size: clamp(1em, 2vw, 1.5em);
+    }
+
+    .quote {
+        font-size: clamp(.45em, 1vw, .75em);
+    }
+
+    p {
+        font-size: clamp(.65em, 1.2vw, 1em);
     }
 }
 
 .sideBar {
     position: absolute;
     top: 50%;
-    right: 0;
+    translate: 0 -50%;
+    right: 2vw;
     display: grid;
     z-index: 10;
 }
@@ -337,17 +349,15 @@ button.restart {
 
 
     &.show {
-        position: absolute;
-        bottom: 0;
-        left: 33.3%;
         display: block;
-        background-color: #444;
-        margin-left: auto;
         color: #fff;
-        width: 2em;
-        height: 2em;
-        font-size: 2em;
+        width: max-content;
+        font-size: font-size: clamp(.65em, 1.2vw, 1em);;
+        padding: 1em 5vw;
+        background: var(--button-gradient);
+        border-radius: 10px;
         border: none;
+        cursor: pointer;
     }
 
     &.active {
