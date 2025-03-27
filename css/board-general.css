@@ -27,7 +27,7 @@
 }
 
 
-button {
+button:not(.restart, .showChozenWoman) {
   border: none;
   background: none;
   padding: 0;
@@ -337,7 +337,6 @@ article {
   top: 50%;
   translate: 0 -50%;
   right: -5em;
-  padding: 1em;
   border-radius: 10px;
 
   img {
