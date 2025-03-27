@@ -349,6 +349,17 @@ button:not(.restart, .showChozenWoman) {
 /* HOVER CARD */
 /* ========================== */
 
+.scene-wrapper h2 {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  translate: -50% -50%;
+  text-transform: uppercase;
+  font-size: clamp(2em, 3vw, 5em);
+  text-align: center;
+  color: #020BA6;
+}
+
 article {
   z-index: 100;
   background-color: #fff;
