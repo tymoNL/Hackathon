@@ -74,7 +74,7 @@ getData(MyURL).then(dataWomen => {
             <img src="${womanImage}" loading="lazy" alt="${womanName}" />
             <div class="info">
                 <h3 class="name">${womanName}</h3>
-                <small class="quote">${womanTagline}</small>
+                <p class="quote">${womanTagline}</p>
                 <p class="work"><i class="fa-solid fa-briefcase"></i> ${womanWork}</p>
                 <p class="country"><i class="fa-solid fa-earth-europe"></i> ${womanCountry}</p>
                 <p class="period">${womanPeriod}</p>
@@ -95,11 +95,11 @@ getData(MyURL).then(dataWomen => {
             data-github="${womanGithub.replace(/"/g, '&quot;')}"
             data-codepen="${womanCodepen.replace(/"/g, '&quot;')}"
             data-codepen-demo="${womanCodepenDemo.replace(/"/g, '&quot;')}"
+            data-chozen="false"
             >
                 <!-- front -->
                 <div>
                 <img src="${womanImage}" />
-                    <p>${womanName}</p>
                 </div>
                 <!-- back -->
                 <div></div>
@@ -136,6 +136,10 @@ getData(MyURL).then(dataWomen => {
             const Codepen = clickedWoman.dataset.codepen;
             const CodepenDemo = clickedWoman.dataset.codepenDemo;
 
+            clickedWoman.classList.add('chozenWoman');
+
+            var clickWomanCard = document.querySelector('.card[data-name="' + name + '"]');
+            clickWomanCard.dataset.chozen = "true";
 
             selectWoman(clickedWoman, name, work, tagline, period, country, image, website);
             carrouselContainer.classList.add('hidden');
@@ -146,6 +150,8 @@ getData(MyURL).then(dataWomen => {
         }
     });
 });
+
+
 
 // Get Json data 
 async function getData(URL) {

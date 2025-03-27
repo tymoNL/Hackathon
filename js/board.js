@@ -21,12 +21,12 @@ ranges.forEach(range => {
 
 function setupCardListeners() {
     let topContainer = document.querySelector('.top');
-    let cards = topContainer.querySelectorAll('.card'); 
+    let cards = topContainer.querySelectorAll('.card');
     let article = document.querySelector('article');
-    let extraInfoContainer = document.querySelector('.extraInfoContainer'); 
+    let extraInfoContainer = document.querySelector('.extraInfoContainer');
 
     cards.forEach(card => {
-        const womanImage = card.dataset.image; 
+        const womanImage = card.dataset.image;
         const womanName = card.dataset.name;
         const womanWork = card.dataset.work;
         const womanTagline = card.dataset.tagline;
@@ -36,8 +36,6 @@ function setupCardListeners() {
         const womanGithub = card.dataset.github;
         const womanCodepen = card.dataset.codepen;
         const womanCodepenDemo = card.dataset.codepenDemo;
-
-        console.log("kaas");
 
         const articleHTML = `
             <div class="card-info">
@@ -58,13 +56,45 @@ function setupCardListeners() {
             </div>
         `;
 
+        let winText = `
+        <h1><span>🎉</span> You won! <span>🎉</span></h1>`;
+
+        let loseText = `
+        <h1><span>😢</span> You lost! <span>😢</span></h1>`;
+
+        let restartButton = `
+            <button class="restart" onclick="window.location.reload();">Restart</button>
+        `;
+
         card.addEventListener('click', () => {
             card.classList.toggle('rotated');
             console.log('Card clicked');
+
+            if (card.dataset.chozen == "true") {
+                document.querySelector('section.scene').remove();
+
+                document.querySelector('div.scene-wrapper.wrapper').style.flexDirection = 'column';
+
+                document.querySelector('div.scene-wrapper.wrapper').insertAdjacentHTML('beforeend', loseText);
+                document.querySelector('div.scene-wrapper.wrapper').insertAdjacentHTML('beforeend', restartButton);
+            }
+
+            // Check if ALL chosen cards have the "rotated" class
+            let allChosenCards = document.querySelectorAll('[data-chozen="false"]');
+            let allRotated = Array.from(allChosenCards).every(c => c.classList.contains('rotated'));
+
+            if (allRotated) {
+                document.querySelector('section.scene').remove();
+
+                document.querySelector('div.scene-wrapper.wrapper').style.flexDirection = 'column';
+
+                document.querySelector('div.scene-wrapper.wrapper').insertAdjacentHTML('beforeend', winText);
+                document.querySelector('div.scene-wrapper.wrapper').insertAdjacentHTML('beforeend', restartButton);
+            }
         });
 
         card.addEventListener('mouseover', () => {
-console.log('Mouse over');
+            console.log('Mouse over');
 
             const infoDiv = article.querySelector('.card-info');
             if (infoDiv) {
