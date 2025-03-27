@@ -32,6 +32,10 @@ body {
     background: var(--background-gradient);
 }
 
+* {
+    font-family: var(--font-family);
+}
+
 h1 {
     color: var(--header-color);
 }
@@ -117,7 +121,7 @@ main {
         font-size: 4cqw;
     }
 
-    button {
+    button.start {
         background: var(--button-gradient);
         padding: 2cqw 15cqw;
         border-radius: 1cqw;
@@ -128,7 +132,15 @@ main {
     }
 }
 
-
+button.restart {
+    background: var(--button-gradient);
+    padding: 16px 64px;
+    border-radius: 15px;
+    font-size: 20px;
+    margin-bottom: 20px;
+    border: none;
+    cursor: pointer;
+}
 
 
 
@@ -317,7 +329,7 @@ main {
     top: 50%;
     right: 0;
     display: grid;
-    translate: 0 -50%;
+    z-index: 10;
 }
 
 .showChozenWoman {

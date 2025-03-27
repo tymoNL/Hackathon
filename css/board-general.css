@@ -27,7 +27,7 @@
 }
 
 
-button {
+button:not(.restart, .showChozenWoman) {
   border: none;
   background: none;
   padding: 0;
