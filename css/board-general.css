@@ -351,7 +351,7 @@ button:not(.restart, .showChozenWoman) {
 
 .scene-wrapper h2 {
   position: absolute;
-  top: 20%;
+  top: 15%;
   left: 50%;
   translate: -50% -50%;
   text-transform: uppercase;
