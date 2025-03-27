@@ -91,18 +91,20 @@ main {
 
 /* Start screen */
 
-.start-screen { 
+.start-screen {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    container-type: inline-size;
 
     background: var(--element-gradient);
     border-radius: 15px;
-    gap: 25px;
+    gap: 2cqw;
 
-    width: 66.6%;
-    padding: 2em;
+    max-width: 800px;
+    width: 100%;
+    padding: 3cqw;
 
     img {
         width: 66.6%;
@@ -116,14 +118,14 @@ main {
     }
 
     h2 {
-        font-weight: 100;
+        font-size: 4cqw;
     }
 
     button.start {
         background: var(--button-gradient);
-        padding: 25px 145px;
-        border-radius: 15px;
-        font-size: 20px;
+        padding: 2cqw 15cqw;
+        border-radius: 1cqw;
+        font-size: 2cqw;
         margin-bottom: 20px;
         border: none;
         cursor: pointer;
@@ -149,7 +151,7 @@ button.restart {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 1em 5em;
+    padding: 0 5vw;
 }
 
 
@@ -161,24 +163,26 @@ button.restart {
 /* Carrousel */
 .carrouselContainer {
     padding: 2em 5em 3em 5em;
-    margin: 0 3em;
     background: var(--element-gradient);
     border-radius: 25px;
+    max-width: 800px;
     width: 100%;
+    container-type: inline-size;
 }
 
 .carrouselContainer>p {
-    color:rgba(6, 242, 242, 0.87);
+    color: rgba(6, 242, 242, 0.87);
     text-transform: uppercase;
     text-align: center;
+    font-size: 2.5cqw;
 }
 
 .carrouselContainer>h3 {
     color: white;
     text-align: center;
-    font-size: 2em;
+    font-size: 5cqw;
     font-weight: 400;
-    padding-bottom: 1rem;
+    padding-bottom: 2cqw;
 }
 
 .carrouselContainer ul {
@@ -243,13 +247,25 @@ button.restart {
 }
 
 .carrouselContainer li {
-    padding: 1em;
+    padding: 3cqw;
     background-color: white;
     width: calc(33.3% - .66em);
     /*height: calc((var(--z) - var(--adjustments-block)) / 5 * 4);*/
     flex-shrink: 0;
     border-radius: 10px;
     border: 2px solid var(--header-bg);
+}
+
+.carrouselContainer li h3 {
+    font-size: 2.5cqw;
+}
+
+.carrouselContainer li .quote {
+    font-size: 1.5cqw;
+}
+
+.carrouselContainer li p {
+    font-size: 2cqw;
 }
 
 .carrouselContainer li * {
@@ -286,48 +302,52 @@ button.restart {
 }
 
 .chozenWoman {
-    display: flex;
-    align-items: flex-start;
-    width: 20em;
-    max-width: 0px;
-    overflow: hidden;
-    border-radius: 10px;
-    transition: 0.25s all ease-out;
-    background-color: #fff;
+    display: none;
 
 
     &.active {
-        max-width: 1000px;
-        padding: 1em;
+        display: block;
+        max-width: 20vw;
+        display: flex;
+        align-items: flex-start;
+        overflow: hidden;
+        border-radius: 10px;
+        transition: 0.25s all ease-out;
+        background-color: #fff;
     }
 
     img {
+        height: 15vw;
         width: 100%;
+        object-fit: cover;
         border-radius: 10px;
     }
 }
 
 .sideBar {
     position: absolute;
+    top: 50%;
     right: 0;
-    top: 0;
     display: grid;
     z-index: 10;
 }
 
 .showChozenWoman {
     display: none;
-    background-color: #444;
-    margin-left: auto;
-    color: #fff;
-    width: 2em;
-    height: 2em;
-    font-size: 2em;
-    border: none;
 
 
     &.show {
+        position: absolute;
+        bottom: 0;
+        left: 33.3%;
         display: block;
+        background-color: #444;
+        margin-left: auto;
+        color: #fff;
+        width: 2em;
+        height: 2em;
+        font-size: 2em;
+        border: none;
     }
 
     &.active {
@@ -341,31 +361,9 @@ button.restart {
     }
 }
 
-article {
-    anchor-name: --anchor-article;
-
-    .card-info {
-        display: grid;
-        grid-template-rows: auto 1fr;
-        padding: 1em;
-
-        img {
-            height: 10em;
-            width: 100%;
-            object-fit: cover;
-        }
-
-        .info {
-            padding: 0 1em;
-
-            button {
-                background-color: #444;
-                color: #fff;
-                border: none;
-                padding: 0.5em 1em;
-                border-radius: 5px;
-                cursor: pointer;
-            }
-        }
-    }
+.chozenWomanInfo {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    padding: 1em;
+    width: 100%;
 }
